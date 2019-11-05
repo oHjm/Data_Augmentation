@@ -10,7 +10,7 @@ from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 #                                   メイン関数
 # =============================================================================
 
-# ------------------- 以下，個別で扱う変数 -------------------
+# ------------------- 以下，個別で指定する各変数 -------------------
 
 input_dir = 'trainImg' # 学習の原画像が入っているフォルダ名
 output_dir = "output" # 拡張処理後の出力フォルダ名
@@ -25,7 +25,7 @@ generator = ImageDataGenerator(
                 horizontal_flip=False, # 垂直方向にランダムで反転
                 vertical_flip=True # 水平方向にランダムで反転
                 )
-# ------------------- 以上，個別で扱う変数 -------------------
+# ------------------- 以上，個別で指定する各変数 -------------------
 
 # 拡張処理後の出力フォルダ作成
 if not(os.path.exists(output_dir)):
