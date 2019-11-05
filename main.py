@@ -9,8 +9,11 @@ from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 # =============================================================================
 #                                   メイン関数
 # =============================================================================
-input_dir = 'trainImg' # 
-dir_name = "output" # 
+
+# ------------------- 以下，個別で扱う変数 -------------------
+
+input_dir = 'trainImg' # 学習の原画像が入っているフォルダ名
+output_dir = "output" # 拡張処理後の出力フォルダ名
 num = 10 # 拡張する画像枚数
 
 generator = ImageDataGenerator(
@@ -22,6 +25,11 @@ generator = ImageDataGenerator(
                 horizontal_flip=False, # 垂直方向にランダムで反転
                 vertical_flip=True # 水平方向にランダムで反転
                 )
+# ------------------- 以上，個別で扱う変数 -------------------
+
+# 拡張処理後の出力フォルダ作成
+if not(os.path.exists(output_dir)):
+        os.mkdir(output_dir)
 
 # 指定したフォルダ名の中にある画像リストを得る
 images = glob.glob(os.path.join(input_dir + "/*"))
@@ -40,7 +48,7 @@ for i in range(len(images)):
     ar_img = np.expand_dims(img, axis=0)
     
     # 画像の拡張
-    test = IA.process_imgs(generator, ar_img, dir_name, path, num)
+    test = IA.process_imgs(generator, ar_img, output_dir, path, num)
 
         
         
